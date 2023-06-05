@@ -15,11 +15,11 @@
                 let td = clone.querySelectorAll('td');
                 // text += `${arr[i].toFixed(deci)}, `;
                 let iterador = `x${i}`,
-                valor = arr[i].toFixed(deci);
+                    valor = arr[i].toFixed(deci);
                 td[0].appendChild(d.createTextNode(iterador));
                 td[1].appendChild(d.createTextNode(valor));
 
-                result.appendChild(clone)
+                result.appendChild(clone);
             }
         } else {
             let itera = d.getElementById('IteraE');

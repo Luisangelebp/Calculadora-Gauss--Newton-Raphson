@@ -110,6 +110,9 @@ h1 {
 .newton .errorNew {
   color: red;
 }
+.newton #TablaResultNew td {
+  border: 1px solid #acacac;
+}
 
 .footer {
   margin-top: 1rem;
@@ -119,4 +122,22 @@ h1 {
   justify-content: center;
   align-items: center;
   display: flex;
+}
+.footer a {
+  text-decoration: none;
+  color: rgb(58, 58, 58);
+  margin-left: 10px;
+}
+.footer a:hover .bi-github {
+  color: rgb(4, 4, 85);
+}
+.footer a:hover .bi-youtube {
+  color: red;
+}
+.footer a i {
+  transition: all 0.1s ease;
+  font-size: 2rem;
+}
+.footer a i:hover {
+  font-size: 2.5rem;
 }/*# sourceMappingURL=index.css.map */

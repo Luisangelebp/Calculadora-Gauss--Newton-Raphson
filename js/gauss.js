@@ -32,7 +32,7 @@
     d.getElementById('GaussTO').addEventListener('submit', (e) => {
         e.preventDefault();
         e.submitter.setAttribute('disabled', 'disabled');
-        let Omatriz = [
+        let aux1 = [
             [
                 parseFloat(d.getElementById('a1x1').value),
                 parseFloat(d.getElementById('a1x2').value),
@@ -74,7 +74,6 @@
                 parseFloat(d.getElementById('a5x6').value),
             ],
         ];
-        let aux1 = Omatriz;
         let n = 5;
         for (let k = 0; k < n - 1; k++) {
             for (let i = k + 1; i < n; i++) {
@@ -92,33 +91,32 @@
     });
 
     function despeje(arr) {
-
-        let x5 = arr[4][5] / arr[4][4];
-        let x4 = (arr[3][5] - arr[3][4] * x5) / arr[3][3];
-        let x3 = (arr[2][5] - arr[2][4] * x5 - arr[2][3] * x4) / arr[2][2];
-        let x2 = (arr[1][5] - arr[1][4] * x5 - arr[1][3] * x4 - arr[1][2] * x3) /
+        let xv = [arr[4][5] / arr[4][4]];
+        xv[1] = (arr[3][5] - arr[3][4] * xv[0]) / arr[3][3];
+        xv[2] = (arr[2][5] - arr[2][4] * xv[0] - arr[2][3] * xv[1]) / arr[2][2];
+        xv[3] =
+            (arr[1][5] -
+                arr[1][4] * xv[0] -
+                arr[1][3] * xv[1] -
+                arr[1][2] * xv[2]) /
             arr[1][1];
-        let x1 = (arr[0][5] -
-            arr[0][4] * x5 -
-            arr[0][3] * x4 -
-            arr[0][2] * x3 -
-            arr[0][1] * x2) /
+        xv[4] =
+            (arr[0][5] -
+                arr[0][4] * xv[0] -
+                arr[0][3] * xv[1] -
+                arr[0][2] * xv[2] -
+                arr[0][1] * xv[3]) /
             arr[0][0];
 
-        d.getElementById('resultadoGauss').appendChild(
-            d.createElement('P').appendChild(d.createTextNode('X5 = ' + x5 + ' | '))
-        );
-        d.getElementById('resultadoGauss').appendChild(
-            d.createElement('p').appendChild(d.createTextNode('X4 = ' + x4 + ' | '))
-        );
-        d.getElementById('resultadoGauss').appendChild(
-            d.createElement('p').appendChild(d.createTextNode('X3 = ' + x3 + ' | '))
-        );
-        d.getElementById('resultadoGauss').appendChild(
-            d.createElement('p').appendChild(d.createTextNode('X2 = ' + x2 + ' | '))
-        );
-        d.getElementById('resultadoGauss').appendChild(
-            d.createElement('p').appendChild(d.createTextNode('X1 = ' + x1))
-        );
+        let resultGuass = d.getElementById('resultadoGauss');
+        let j = 0;
+        for (let i = 4; i >= 0; i--) {
+            let p = d.createElement('p');
+            let text = d.createTextNode(`x${j} = ${xv[i]}`);
+            p.appendChild(text);
+            resultGuass.appendChild(p);
+            console.log(j);
+            j++;
+        }
     }
 })();
