@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="author" content="Luisangel Betancourt">
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+            crossorigin="anonymous"
+        />
+        <link rel="stylesheet" href="css/index.css" />
+        <title>Gauss -- Newton-Raphson</title>
+    </head>
+    <body>
+        <h1>Calculadora de:</h1>
+
+        <div class="container align-items-center">
+            <nav class="nav-menu">
+                <a data-bs-target="#carouselExample" id="gauss-menu" data-bs-slide-to="0" aria-current="true" aria-label="Slide 1" onclick="active(this)" >Metodo de Gauss 5x5</a>
+                <a data-bs-target="#carouselExample" id="newton-menu" data-bs-slide-to="1" aria-current="true" onclick="active(this)" aria-label="Slide 2" class="active">Newton-Raphson</a>
+            </nav>
+            <div id="carouselExample" class="carousel slide">
+                <div class="carousel-inner">
+                    <div class="carousel-item ">
+                        <div class="d-flex justify-content-center gaus">
+                            <h4 class="text-center">Ingrese los valores de la matriz:</h4>
+                            <form id="GaussTO">
+                                <table>
+                                    <tr>
+                                        <td><input type="number" name="a1x1" id="a1x1" required value="5"></td>
+                                        <td><input type="number" name="a1x2" id="a1x2" required value="4"></td>
+                                        <td><input type="number" name="a1x3" id="a1x3" required value="-1"></td>
+                                        <td><input type="number" name="a1x4" id="a1x4" required value="2"></td>
+                                        <td><input type="number" name="a1x5" id="a1x5" required value="-9"></td>
+                                        <td><input type="number" name="a1x6" id="a1x6" required value="29"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="number" name="a2x1" id="a2x1" required value="4"></td>
+                                        <td><input type="number" name="a2x2" id="a2x2" required value="3"></td>
+                                        <td><input type="number" name="a2x3" id="a2x3" required value="-5"></td>
+                                        <td><input type="number" name="a2x4" id="a2x4" required value="-5"></td>
+                                        <td><input type="number" name="a2x5" id="a2x5" required value="4"></td>
+                                        <td><input type="number" name="a2x6" id="a2x6" required value="-65"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="number" name="a3x1" id="a3x1" required value="6"></td>
+                                        <td><input type="number" name="a3x2" id="a3x2" required value="-4"></td>
+                                        <td><input type="number" name="a3x3" id="a3x3" required value="-3"></td>
+                                        <td><input type="number" name="a3x4" id="a3x4" required value="-9"></td>
+                                        <td><input type="number" name="a3x5" id="a3x5" required value="4"></td>
+                                        <td><input type="number" name="a3x6" id="a3x6" required value="-113"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="number" name="a4x1" id="a4x1" required value="-8"></td>
+                                        <td><input type="number" name="a4x2" id="a4x2" required value="8"></td>
+                                        <td><input type="number" name="a4x3" id="a4x3" required value="5"></td>
+                                        <td><input type="number" name="a4x4" id="a4x4" required value="-3"></td>
+                                        <td><input type="number" name="a4x5" id="a4x5" required value="-6"></td>
+                                        <td><input type="number" name="a4x6" id="a4x6" required value="35"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="number" name="a5x1" id="a5x1" required value="-3"></td>
+                                        <td><input type="number" name="a5x2" id="a5x2" required value="-7"></td>
+                                        <td><input type="number" name="a5x3" id="a5x3" required value="2"></td>
+                                        <td><input type="number" name="a5x4" id="a5x4" required value="-5"></td>
+                                        <td><input type="number" name="a5x5" id="a5x5" required value="4"></td>
+                                        <td><input type="number" name="a5x6" id="a5x6" required value="-50"></td>
+                                    </tr>
+                                </table>
+                                <button type="submit" class="btn btn-primary" id="calcularG">Calcular</button>
+                            </form>
+                            <div class="resultadoGauss" id="resultadoGauss">
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item active">
+                        <div class="newton">
+                            <h4>Ingrese los valores para el calculo de la raiz</h4>
+                            <form id="ENewton">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <label for="Xinicial">Valor aproximado de X</label>
+                                            <input type="number" id="Xinicial" value="" step="any" required>
+                                        </div>
+                                        <div class="col-4">
+                                            <label for="Fini">Ingrese la funcion</label>
+                                            <input type="text" id="Fini" value="x^3-3*x+4" placeholder="x^3-3*x+4">
+                                        </div>
+                                        <div class="col-4">
+                                            <label for="DFini">Ingrese la funcion derivada</label>
+                                            <input type="text" id="DFini" value="3*x^2-3" placeholder="3*x^2-3">
+                                        </div>
+                                        <div class="col deci">
+                                            <label for="Deci">Ingrese la cantidad de decimales a calcular</label>
+                                            <input type="number" min="1" max="10" id="Deci" step="1" value="3">
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Calcular</button>
+                                </div>
+                            </form>
+                            <div class="container" id="resultNew">
+                                <h6 id="h6itera" hidden>Las ultimas iteraciones dieron:</h6>
+                                <p id="IteraE" class="errorNew" hidden>Hay demasiadas iteraciones, mira la consola de la herramienta de desarrollador para poder ver todos los valores obtenidos (Por defecto la tecla f12)</p>
+                                <table id="TablaResultNew" class="table w-100 ta"></table>
+                                <h6 id="h6iterault" hidden>Total de iteraciones: <span id="totalItera"></span></h6>
+                            </div>
+                            <h6>Ten en cuenta lo siguiente:</h6>
+                            <ul>
+                                <li>Usa la x minuscula como tu variable</li>
+                                <li>¡¡¡Importante!!! Si la funcion durante el calculo llega a mas de 100 iteraciones posiblemente es porque la misma ¡No converge!, por lo que para evitar colgar tu pc con demasiados ciclos, ¡hay un bloqueo a las 500 iteraciones!</li>
+                                <li>Cuando ingreses una funcion usa el * entre un numero y una variable para multiplicarlos Ejemp: 2x => 2*x</li>
+                                <li>Javascript entiende el operador ^ como un operador bit a bit, por lo que usa ** para tus exponentes, Ejemp: x^2 => x**2</li>
+                                <li>Leete los operadores de JavaScript antes de ingresar tu funcion <a href="https://developer.mozilla.org/es/docs/Web/JavaScript/Guide/Expressions_and_Operators" target="_blank">Operadores</a></li>
+                                <li>Si vas a ingresar una funcion trigonometrica, un numero especial como Euler o pi, entre otros, leete este articulo <a href="https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Math" target="_blank">Metodos JS</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <template id="Ttabla">
+            <table class="table w-100 ta table-bordered">
+                <tr>
+                    <td class="a1"></td>
+                    <td class="a1"></td>
+                    <td class="a1"></td>
+                    <td class="a1"></td>
+                    <td class="a1"></td>
+                    <td class="a1"></td>
+                </tr>
+                <tr>
+                    <td class="a2"></td>
+                    <td class="a2"></td>
+                    <td class="a2"></td>
+                    <td class="a2"></td>
+                    <td class="a2"></td>
+                    <td class="a2"></td>
+                </tr>
+                <tr>
+                    <td class="a3"></td>
+                    <td class="a3"></td>
+                    <td class="a3"></td>
+                    <td class="a3"></td>
+                    <td class="a3"></td>
+                    <td class="a3"></td>
+                </tr>
+                <tr>
+                    <td class="a4"></td>
+                    <td class="a4"></td>
+                    <td class="a4"></td>
+                    <td class="a4"></td>
+                    <td class="a4"></td>
+                    <td class="a4"></td>
+                </tr>
+                <tr>
+                    <td class="a5"></td>
+                    <td class="a5"></td>
+                    <td class="a5"></td>
+                    <td class="a5"></td>
+                    <td class="a5"></td>
+                    <td class="a5"></td>
+                </tr>
+            </table>
+        </template>
+        <template id="templateNew">
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+        </template>
+
+        <footer class="footer">
+            <h7>Desarrollado por Luisangel Betancourt para el sub-proyecto "Metodos Numericos"</h7>
+        </footer>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+            crossorigin="anonymous"
+        ></script>
+        <script src="js/active.js"></script>
+        <script src="js/gauss.js"></script>
+        <script src="js/newton.js"></script>
+    </body>
+</html>

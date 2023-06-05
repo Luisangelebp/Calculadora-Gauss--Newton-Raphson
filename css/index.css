@@ -1,0 +1,122 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100vh;
+}
+
+h1 {
+  text-align: center;
+  margin: 1rem;
+}
+
+.nav-menu {
+  background-color: rgb(230, 230, 230);
+  padding: 0.5rem;
+  display: flex;
+  justify-content: center;
+}
+.nav-menu a {
+  margin: 0 1rem;
+  color: rgb(33, 37, 41);
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.5s ease;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+}
+.nav-menu a.active {
+  border-bottom: 3px solid rgb(58, 58, 58);
+}
+
+.carousel-inner {
+  border: 1px solid rgb(230, 230, 230);
+}
+
+.ta {
+  width: 100%;
+}
+.ta tr {
+  display: flex;
+}
+.ta tr td {
+  width: 100%;
+}
+
+.gaus {
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5rem;
+}
+.gaus h4 {
+  margin: 0.5rem;
+}
+.gaus form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0.5rem;
+}
+.gaus form input {
+  width: 100%;
+}
+.gaus form #calcularG {
+  margin-top: 0.5rem;
+}
+.gaus .resultadoGauss {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin: 0.5rem;
+  width: 100%;
+  padding: 0.5rem;
+}
+
+.newton {
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+  padding: 0.5rem;
+}
+.newton h4 {
+  margin: 0.5rem;
+}
+.newton form {
+  width: 100%;
+  margin: 0.5rem;
+}
+.newton form .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.newton form .container .row {
+  width: 100%;
+  margin: 0.5rem;
+}
+.newton form .container .row .deci {
+  margin-top: 0.5rem;
+}
+.newton form .container button {
+  margin: 0.5rem;
+  width: 70%;
+}
+.newton .errorNew {
+  color: red;
+}
+
+.footer {
+  margin-top: 1rem;
+  height: 100px;
+  width: 100%;
+  background-color: rgb(230, 230, 230);
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}/*# sourceMappingURL=index.css.map */
