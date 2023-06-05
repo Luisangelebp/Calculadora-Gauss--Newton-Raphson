@@ -114,7 +114,7 @@ h1 {
   border: 1px solid #acacac;
 }
 
-.footer {
+footer {
   margin-top: 1rem;
   height: 100px;
   width: 100%;
@@ -123,21 +123,21 @@ h1 {
   align-items: center;
   display: flex;
 }
-.footer a {
+footer a {
   text-decoration: none;
   color: rgb(58, 58, 58);
   margin-left: 10px;
 }
-.footer a:hover .bi-github {
+footer a:hover .bi-github {
   color: rgb(4, 4, 85);
 }
-.footer a:hover .bi-youtube {
+footer a:hover .bi-youtube {
   color: red;
 }
-.footer a i {
+footer a i {
   transition: all 0.1s ease;
   font-size: 2rem;
 }
-.footer a i:hover {
+footer a i:hover {
   font-size: 2.5rem;
 }/*# sourceMappingURL=index.css.map */
