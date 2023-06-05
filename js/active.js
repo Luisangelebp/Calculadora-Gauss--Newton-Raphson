@@ -1,4 +1,4 @@
-var activeElement = document.getElementById('newton-menu');
+var activeElement = document.getElementById('gauss-menu');
 function active(e){
     //console.log(e, activeElement);
     if(activeElement !== e){
