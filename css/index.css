@@ -105,6 +105,10 @@ h1 {
 .newton form .container .row .deci {
   margin-top: 0.5rem;
 }
+.newton form .container .row .col-input {
+  display: flex;
+  flex-direction: column;
+}
 .newton form .container button {
   margin: 0.5rem;
   width: 70%;
@@ -126,6 +130,10 @@ footer {
   position: absolute;
   bottom: 0;
   left: 0;
+}
+footer p {
+  margin-bottom: 0 !important;
+  margin-left: 10px;
 }
 footer a {
   text-decoration: none;
